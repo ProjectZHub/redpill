@@ -56,6 +56,27 @@ class Request
     }
 
     /**
+     * Returns the base directory of the application
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return dirname($_SERVER['SCRIPT_NAME']) . '/';
+    }
+
+    /**
+     * Returns the full url of the application
+     *
+     * @return string
+     */
+    public function getFullUrl()
+    {
+        return 'http' . (array_key_exists('HTTPS', $_SERVER) ? 's' : '') .
+        '://' . $_SERVER['HTTP_HOST'] . $this->getBaseUrl();
+    }
+
+    /**
      * Returns the request path
      */
     protected function getRequestPath()

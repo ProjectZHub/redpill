@@ -29,4 +29,10 @@ class Response
      */
     public $status;
 
+    public function redirect($path)
+    {
+        header("Location: $path");
+        exit;
+    }
+
 }

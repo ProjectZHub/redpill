@@ -29,6 +29,16 @@ class App
     public $router;
 
     /**
+     * @var Session
+     */
+    public $session;
+
+    /**
+     * @var Collection
+     */
+    public $config;
+
+    /**
      * @var array
      */
     protected $handlers = [];
@@ -37,6 +47,7 @@ class App
      * @var array
      */
     protected $middleware = [];
+
 
     /**
      * @param $app
@@ -59,6 +70,8 @@ class App
         $this->middleware = ['404' => function ($params, $app) {
             $app->response->body = '404 not found';
         }];
+        $this->session = new Session(isset($_SESSION) ? $_SESSION : []);
+        $this->config = new Collection([]);
     }
 
     /**
@@ -76,7 +89,7 @@ class App
     }
 
     /**
-     *
+     * Match requests and output the response body
      */
     public function run()
     {
@@ -104,6 +117,17 @@ class App
             call_user_func_array($handlerToRun[0], $handlerToRun[1]);
         }
         echo $app->response->body;
+    }
+
+    /**
+     * Redirects to one of the paths added to the router
+     * @param string $path
+     */
+    public function redirect($path)
+    {
+        $sep = $this->config->has('url_rewrite') ? '/' : '?/';
+        $url = $this->request->getBaseUrl() . $sep . ltrim($path, '/');
+        $this->response->redirect($url);
     }
 
 }
