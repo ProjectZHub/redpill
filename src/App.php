@@ -94,7 +94,7 @@ class App
         if ($runHandler && !empty($handlerToRun[2])) {
             foreach ($handlerToRun[2] as $name => $params) {
                 if ($runHandler) {
-                    $runHandler = call_user_func_array($this->middleware[$name], array_merge($params, [$app]));
+                    $runHandler = call_user_func_array($this->middleware[$name], array_merge([$params], [$app]));
                 } else {
                     break;
                 }

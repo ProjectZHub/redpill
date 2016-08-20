@@ -29,6 +29,11 @@ class Request
     public $params;
 
     /**
+     * @var Collection
+     */
+    public $post;
+
+    /**
      * @var string
      */
     public $path;
@@ -44,6 +49,7 @@ class Request
     public function __construct()
     {
         $this->params = new Collection($_GET);
+        $this->post = new Collection($_POST);
         $this->headers = new Collection(getallheaders());
         $this->method = strtoupper($_SERVER['REQUEST_METHOD']);
         $this->path = $this->getRequestPath();
