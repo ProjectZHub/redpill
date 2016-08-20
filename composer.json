@@ -1,0 +1,15 @@
+{
+  "name": "projectzhub/redpill",
+  "description": "Microframework",
+  "minimum-stability": "dev",
+  "license": "mit",
+  "authors": [
+    {
+      "name": "ProjectZHub",
+      "email": "projectz@protonmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"Redpill\\": "src/"}
+  }
+}
