@@ -125,9 +125,19 @@ class App
      */
     public function redirect($path)
     {
-        $sep = $this->config->has('url_rewrite') ? '/' : '?/';
-        $url = $this->request->getBaseUrl() . $sep . ltrim($path, '/');
+        $url = $this->getBaseUrl() . ltrim($path, '/');
         $this->response->redirect($url);
+    }
+
+    /**
+     * Returns the base url with separator for routing
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        $sep = $this->config->has('url_rewrite') ? '/' : '?/';
+        return $this->request->getBaseUrl() . $sep;
     }
 
 }
