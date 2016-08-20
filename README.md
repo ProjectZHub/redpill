@@ -11,7 +11,6 @@ Features
 
 Usage
 -
-    `
     <?php
     
     require_once('vendor/autoload.php');
@@ -60,6 +59,6 @@ Usage
     
     $app->run();
     
-`
+
  
  
